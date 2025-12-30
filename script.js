@@ -2,74 +2,71 @@
 // CLASSICAL MUSIC INSPIRED WEBSITE - SIMPLE JS
 // ============================================
 
-// Magic Wand Cursor
-const createMagicWand = () => {
-    const wand = document.createElement('div');
-    wand.className = 'magic-wand';
-    wand.innerHTML = '🪄';
-    wand.style.fontSize = '32px';
-    document.body.appendChild(wand);
+// Simple Mouse Trail
+const createMouseTrail = () => {
+    const trailLength = 12;
+    const trails = [];
+    const colors = ['#2D6A5F', '#3a8775', '#B8860B', '#4A628A'];
+
+    // Create fixed number of trail dots
+    for (let i = 0; i < trailLength; i++) {
+        const trail = document.createElement('div');
+        trail.className = 'trail-dot';
+        const colorIndex = Math.floor(i / 3) % colors.length;
+        trail.style.backgroundColor = colors[colorIndex];
+        trail.style.opacity = '0';
+        document.body.appendChild(trail);
+        trails.push({
+            element: trail,
+            x: 0,
+            y: 0,
+            currentX: 0,
+            currentY: 0
+        });
+    }
 
     let mouseX = 0;
     let mouseY = 0;
-    let wandX = 0;
-    let wandY = 0;
 
     // Update mouse position
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
-        createSparkle(e.clientX, e.clientY);
     });
 
-    // Smooth cursor movement
-    const animateWand = () => {
-        wandX += (mouseX - wandX) * 0.15;
-        wandY += (mouseY - wandY) * 0.15;
+    // Animate trail
+    const animateTrail = () => {
+        // Update first trail position to mouse
+        trails[0].x = mouseX;
+        trails[0].y = mouseY;
 
-        wand.style.left = wandX + 'px';
-        wand.style.top = wandY + 'px';
+        // Each trail follows the previous one
+        for (let i = 0; i < trails.length; i++) {
+            const trail = trails[i];
 
-        requestAnimationFrame(animateWand);
+            if (i > 0) {
+                const prev = trails[i - 1];
+                trail.x += (prev.currentX - trail.x) * 0.4;
+                trail.y += (prev.currentY - trail.y) * 0.4;
+            }
+
+            trail.currentX += (trail.x - trail.currentX) * 0.3;
+            trail.currentY += (trail.y - trail.currentY) * 0.3;
+
+            // Position and fade based on index
+            trail.element.style.left = trail.currentX + 'px';
+            trail.element.style.top = trail.currentY + 'px';
+            trail.element.style.opacity = (1 - (i / trailLength)) * 0.6;
+
+            // Scale smaller for dots further back
+            const scale = 1 - (i / trailLength) * 0.5;
+            trail.element.style.transform = `translate(-50%, -50%) scale(${scale})`;
+        }
+
+        requestAnimationFrame(animateTrail);
     };
 
-    animateWand();
-};
-
-// Sparkle Effect
-let lastSparkleTime = 0;
-const sparkleDelay = 50; // milliseconds between sparkles
-
-const createSparkle = (x, y) => {
-    const now = Date.now();
-    if (now - lastSparkleTime < sparkleDelay) return;
-    lastSparkleTime = now;
-
-    const sparkle = document.createElement('div');
-    sparkle.className = 'sparkle';
-
-    // Random sparkle characters
-    const sparkles = ['✨', '⭐', '💫', '🌟', '✦', '✧', '◦'];
-    sparkle.innerHTML = sparkles[Math.floor(Math.random() * sparkles.length)];
-
-    // Random size
-    const size = 12 + Math.random() * 12;
-    sparkle.style.fontSize = size + 'px';
-
-    // Position with slight random offset
-    sparkle.style.left = (x + (Math.random() - 0.5) * 20) + 'px';
-    sparkle.style.top = (y + (Math.random() - 0.5) * 20) + 'px';
-
-    // Random color from professional theme
-    const colors = ['#2D6A5F', '#B8860B', '#4A628A', '#3a8775', '#d4a729'];
-    sparkle.style.color = colors[Math.floor(Math.random() * colors.length)];
-
-    document.body.appendChild(sparkle);
-
-    // Remove sparkle after animation
-    setTimeout(() => {
-        sparkle.remove();
-    }, 1000);
+    animateTrail();
 };
 
 // Ripple Effect for Buttons
@@ -100,9 +97,9 @@ const addRippleEffects = () => {
     });
 };
 
-// Initialize magic wand on page load
+// Initialize mouse trail on page load
 window.addEventListener('load', () => {
-    createMagicWand();
+    createMouseTrail();
     addRippleEffects();
 });
 
