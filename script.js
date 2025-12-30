@@ -60,8 +60,8 @@ const createSparkle = (x, y) => {
     sparkle.style.left = (x + (Math.random() - 0.5) * 20) + 'px';
     sparkle.style.top = (y + (Math.random() - 0.5) * 20) + 'px';
 
-    // Random color from theme
-    const colors = ['#FF6B6B', '#4ECDC4', '#FFE66D', '#5B9FED', '#95E1D3'];
+    // Random color from professional theme
+    const colors = ['#2D6A5F', '#B8860B', '#4A628A', '#3a8775', '#d4a729'];
     sparkle.style.color = colors[Math.floor(Math.random() * colors.length)];
 
     document.body.appendChild(sparkle);
@@ -72,9 +72,38 @@ const createSparkle = (x, y) => {
     }, 1000);
 };
 
+// Ripple Effect for Buttons
+const createRipple = (event) => {
+    const button = event.currentTarget;
+    const ripple = document.createElement('span');
+    const rect = button.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = event.clientX - rect.left - size / 2;
+    const y = event.clientY - rect.top - size / 2;
+
+    ripple.style.width = ripple.style.height = size + 'px';
+    ripple.style.left = x + 'px';
+    ripple.style.top = y + 'px';
+    ripple.classList.add('ripple');
+
+    button.appendChild(ripple);
+
+    setTimeout(() => {
+        ripple.remove();
+    }, 600);
+};
+
+// Add ripple effect to all buttons
+const addRippleEffects = () => {
+    document.querySelectorAll('.btn').forEach(button => {
+        button.addEventListener('click', createRipple);
+    });
+};
+
 // Initialize magic wand on page load
 window.addEventListener('load', () => {
     createMagicWand();
+    addRippleEffects();
 });
 
 // Hamburger menu toggle
