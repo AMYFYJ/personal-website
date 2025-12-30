@@ -95,7 +95,11 @@ const revealOnScroll = () => {
 };
 
 window.addEventListener('scroll', revealOnScroll);
-revealOnScroll(); // Initial check
+
+// Initial check after page load
+window.addEventListener('load', () => {
+    revealOnScroll();
+});
 
 // Active navigation link highlighting
 const sections = document.querySelectorAll('section[id]');
@@ -122,12 +126,3 @@ window.addEventListener('scroll', () => {
     });
 });
 
-// Prevent layout shift by setting initial states
-window.addEventListener('DOMContentLoaded', () => {
-    // Set initial opacity for animated elements
-    document.querySelectorAll('.reveal-section').forEach(el => {
-        if (!el.classList.contains('revealed')) {
-            el.style.opacity = '0';
-        }
-    });
-});
