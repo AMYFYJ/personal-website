@@ -490,13 +490,9 @@ section#experience {
 
 section#projects {
     position: relative;
-    padding: 100px 0 80px;
-    margin-left: -100vw;
-    margin-right: -100vw;
-    padding-left: calc(50vw - 550px + 40px);
-    padding-right: calc(50vw - 550px + 40px);
+    padding: 80px 0;
     background: linear-gradient(135deg, #fef3f8 0%, #faf5ff 100%);
-    clip-path: polygon(0 0, 100% 5%, 100% 100%, 0 95%);
+    overflow: hidden;
 }
 
 section#contact {
@@ -818,14 +814,15 @@ li::marker {
 /* Projects Grid - Horizontal Scrollable Layout */
 .projects-grid {
     display: flex;
-    gap: 24px;
+    gap: 20px;
     overflow-x: auto;
     overflow-y: hidden;
-    padding: 20px 0;
+    padding: 20px 0 30px 0;
     position: relative;
     z-index: 1;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
+    max-width: 100%;
 }
 
 .projects-grid::-webkit-scrollbar {
@@ -850,13 +847,13 @@ li::marker {
     position: relative;
     background: white;
     border: 2px solid var(--border-color);
-    border-left: 6px solid var(--primary-accent);
-    border-radius: 16px;
-    padding: 32px;
+    border-left: 5px solid var(--primary-accent);
+    border-radius: 12px;
+    padding: 24px;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
-    min-width: 350px;
-    max-width: 350px;
+    min-width: 320px;
+    max-width: 320px;
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
@@ -883,7 +880,7 @@ li::marker {
 
 .project-card:hover {
     border-left-color: var(--secondary-accent);
-    border-left-width: 6px;
+    border-left-width: 5px;
     box-shadow: 0 10px 30px rgba(6, 214, 160, 0.15), 0 0 0 1px rgba(6, 214, 160, 0.1);
     transform: translateY(-5px) scale(1.01);
 }
@@ -1065,13 +1062,17 @@ footer {
 /* Responsive Design */
 @media (max-width: 768px) {
     /* Remove diagonal clip-path on mobile */
-    section#education,
-    section#projects {
+    section#education {
         clip-path: none;
         padding-left: 40px;
         padding-right: 40px;
         margin-left: -40px;
         margin-right: -40px;
+    }
+
+    section#projects {
+        padding-left: 30px;
+        padding-right: 30px;
     }
 
     .hamburger {
@@ -1192,9 +1193,9 @@ footer {
     }
 
     .project-card {
-        min-width: 280px;
-        max-width: 280px;
-        padding: 24px;
+        min-width: 260px;
+        max-width: 260px;
+        padding: 20px;
     }
 
     #contact .contact-content {
