@@ -54,41 +54,18 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
-    cursor: none;
 }
 
-/* Magic Wand Cursor */
-.magic-wand {
+/* Simple Mouse Trail */
+.trail-dot {
     position: fixed;
-    width: 32px;
-    height: 32px;
-    pointer-events: none;
-    z-index: 10000;
-    transform: translate(-50%, -50%) rotate(-45deg);
-    transition: transform 0.1s ease;
-}
-
-/* Sparkle Effect */
-.sparkle {
-    position: fixed;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
-    animation: sparkle-float 1s ease-out forwards;
-}
-
-@keyframes sparkle-float {
-    0% {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(0) rotate(0deg);
-    }
-    50% {
-        opacity: 0.8;
-        transform: translate(-50%, -50%) scale(1) rotate(180deg);
-    }
-    100% {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0.5) rotate(360deg);
-    }
+    transition: opacity 0.15s ease;
+    will-change: transform, opacity;
 }
 
 /* Navigation Bar */
