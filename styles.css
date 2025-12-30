@@ -304,15 +304,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-title {
-    font-size: 4.5rem;
-    font-weight: 900;
-    background: linear-gradient(135deg, var(--charcoal) 0%, var(--primary-accent) 50%, var(--tertiary-accent) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-size: 4rem;
+    font-weight: 800;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: var(--charcoal);
     margin-bottom: 20px;
-    letter-spacing: -0.04em;
-    line-height: 1;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
 }
 
 .hero-subtitle {
@@ -817,24 +815,35 @@ li::marker {
     z-index: 1;
 }
 
-/* Projects Grid - Asymmetric Layout */
+/* Projects Grid - Horizontal Scrollable Layout */
 .projects-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 30px;
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 20px 0;
     position: relative;
     z-index: 1;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
 }
 
-@media (min-width: 768px) {
-    .projects-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 35px;
-    }
+.projects-grid::-webkit-scrollbar {
+    height: 8px;
+}
 
-    .project-card:first-child {
-        grid-column: 1 / -1;
-    }
+.projects-grid::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+    border-radius: 4px;
+}
+
+.projects-grid::-webkit-scrollbar-thumb {
+    background: var(--primary-accent);
+    border-radius: 4px;
+}
+
+.projects-grid::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-accent-dark);
 }
 
 .project-card {
@@ -846,6 +855,11 @@ li::marker {
     padding: 32px;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
+    min-width: 350px;
+    max-width: 350px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .project-card::before {
@@ -1173,8 +1187,13 @@ footer {
     }
 
     .entry,
-    .timeline-item,
+    .timeline-item {
+        padding: 24px;
+    }
+
     .project-card {
+        min-width: 280px;
+        max-width: 280px;
         padding: 24px;
     }
 
