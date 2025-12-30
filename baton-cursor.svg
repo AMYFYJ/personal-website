@@ -1,0 +1,17 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Conductor's baton -->
+  <g transform="rotate(-45 16 16)">
+    <!-- Handle (darker) -->
+    <rect x="14" y="4" width="4" height="8" fill="#5c2e1f" rx="2"/>
+    <!-- Stick (gradient from dark to light) -->
+    <rect x="15" y="12" width="2" height="16" fill="url(#batonGradient)"/>
+    <!-- Tip (bright) -->
+    <circle cx="16" cy="28" r="1.5" fill="#f0e6d2"/>
+  </g>
+  <defs>
+    <linearGradient id="batonGradient" x1="16" y1="12" x2="16" y2="28">
+      <stop offset="0%" stop-color="#5c2e1f"/>
+      <stop offset="100%" stop-color="#8b6f47"/>
+    </linearGradient>
+  </defs>
+</svg>
