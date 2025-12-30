@@ -56,6 +56,13 @@ body {
     overflow-x: hidden;
 }
 
+/* Professional Typography - Headings */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Crimson Pro', Georgia, 'Times New Roman', serif;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
 /* Simple Mouse Trail */
 .trail-dot {
     position: fixed;
@@ -503,29 +510,59 @@ section {
 }
 
 .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
 }
 
 .skill-tag {
-    padding: 12px 20px;
+    position: relative;
+    padding: 14px 24px;
     background: var(--bg-secondary);
     border: 2px solid var(--border-color);
-    border-radius: 8px;
+    border-radius: 10px;
     color: var(--text-secondary);
     font-size: 0.9rem;
     font-weight: 700;
     text-align: center;
-    transition: all 0.3s ease;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+}
+
+.skill-tag::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
 }
 
 .skill-tag:hover {
     background: var(--primary-accent);
     border-color: var(--primary-accent);
     color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(45, 106, 95, 0.3);
+    transform: translateY(-5px) rotate(-2deg) scale(1.08);
+    box-shadow: 0 8px 25px rgba(45, 106, 95, 0.4);
+}
+
+.skill-tag:hover::before {
+    opacity: 1;
+}
+
+.skill-tag:nth-child(even):hover {
+    transform: translateY(-5px) rotate(2deg) scale(1.08);
+}
+
+.skill-tag:active {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 4px 12px rgba(45, 106, 95, 0.3);
 }
 
 /* Timeline (Education) */
@@ -920,7 +957,12 @@ footer {
     }
 
     .skills-grid {
-        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .skill-tag {
+        padding: 12px 20px;
+        font-size: 0.85rem;
     }
 
     .scroll-top {
