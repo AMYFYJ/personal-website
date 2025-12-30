@@ -2,6 +2,81 @@
 // CLASSICAL MUSIC INSPIRED WEBSITE - SIMPLE JS
 // ============================================
 
+// Magic Wand Cursor
+const createMagicWand = () => {
+    const wand = document.createElement('div');
+    wand.className = 'magic-wand';
+    wand.innerHTML = '🪄';
+    wand.style.fontSize = '32px';
+    document.body.appendChild(wand);
+
+    let mouseX = 0;
+    let mouseY = 0;
+    let wandX = 0;
+    let wandY = 0;
+
+    // Update mouse position
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        createSparkle(e.clientX, e.clientY);
+    });
+
+    // Smooth cursor movement
+    const animateWand = () => {
+        wandX += (mouseX - wandX) * 0.15;
+        wandY += (mouseY - wandY) * 0.15;
+
+        wand.style.left = wandX + 'px';
+        wand.style.top = wandY + 'px';
+
+        requestAnimationFrame(animateWand);
+    };
+
+    animateWand();
+};
+
+// Sparkle Effect
+let lastSparkleTime = 0;
+const sparkleDelay = 50; // milliseconds between sparkles
+
+const createSparkle = (x, y) => {
+    const now = Date.now();
+    if (now - lastSparkleTime < sparkleDelay) return;
+    lastSparkleTime = now;
+
+    const sparkle = document.createElement('div');
+    sparkle.className = 'sparkle';
+
+    // Random sparkle characters
+    const sparkles = ['✨', '⭐', '💫', '🌟', '✦', '✧', '◦'];
+    sparkle.innerHTML = sparkles[Math.floor(Math.random() * sparkles.length)];
+
+    // Random size
+    const size = 12 + Math.random() * 12;
+    sparkle.style.fontSize = size + 'px';
+
+    // Position with slight random offset
+    sparkle.style.left = (x + (Math.random() - 0.5) * 20) + 'px';
+    sparkle.style.top = (y + (Math.random() - 0.5) * 20) + 'px';
+
+    // Random color from theme
+    const colors = ['#FF6B6B', '#4ECDC4', '#FFE66D', '#5B9FED', '#95E1D3'];
+    sparkle.style.color = colors[Math.floor(Math.random() * colors.length)];
+
+    document.body.appendChild(sparkle);
+
+    // Remove sparkle after animation
+    setTimeout(() => {
+        sparkle.remove();
+    }, 1000);
+};
+
+// Initialize magic wand on page load
+window.addEventListener('load', () => {
+    createMagicWand();
+});
+
 // Hamburger menu toggle
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('navMenu');
