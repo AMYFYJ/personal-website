@@ -492,7 +492,7 @@ section#projects {
     position: relative;
     padding: 80px 0;
     background: linear-gradient(135deg, #fef3f8 0%, #faf5ff 100%);
-    overflow: hidden;
+    overflow: visible;
 }
 
 section#contact {
@@ -823,6 +823,8 @@ li::marker {
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
     max-width: 100%;
+    margin: 0;
+    width: 100%;
 }
 
 .projects-grid::-webkit-scrollbar {
