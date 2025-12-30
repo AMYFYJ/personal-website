@@ -12,7 +12,7 @@ To enable GitHub Pages for this repository:
 4. Select the root folder `/` as the source
 5. Click "Save"
 
-Your site will be published at: `https://[your-username].github.io/personal-website/`
+Your site will be published at: `https://amyfyj.github.io/personal-website/`
 
 ## Local Development
 
