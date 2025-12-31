@@ -74,16 +74,31 @@ h1, h2, h3, h4, h5, h6 {
     letter-spacing: -0.01em;
 }
 
-/* Simple Mouse Trail */
+/* Sparks Cursor Trail Effect */
 .trail-dot {
     position: fixed;
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
-    transition: opacity 0.15s ease;
     will-change: transform, opacity;
+    box-shadow: 0 0 8px currentColor, 0 0 12px currentColor, 0 0 16px currentColor;
+    filter: blur(0.5px);
+}
+
+.trail-dot::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150%;
+    height: 150%;
+    border-radius: 50%;
+    background: inherit;
+    opacity: 0.4;
+    filter: blur(2px);
 }
 
 /* Navigation Bar */
