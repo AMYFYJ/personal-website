@@ -7,11 +7,10 @@ const createMouseTrail = () => {
     const sparks = [];
     const maxSparks = 50;
 
-    // Vibrant gradient colors matching the website theme
+    // Subtle gradient colors matching the website theme
     const colors = [
         '#FF6B9D',  // Coral Pink (primary-accent)
         '#8B5CF6',  // Rich Purple (tertiary-accent)
-        '#06D6A0',  // Vibrant Teal (secondary-accent)
         '#F59E0B',  // Warm Amber (quaternary-accent)
         '#FFB3D1',  // Light Pink (primary-accent-light)
         '#A78BFA'   // Light Purple (tertiary-accent-light)

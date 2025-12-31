@@ -83,8 +83,9 @@ h1, h2, h3, h4, h5, h6 {
     pointer-events: none;
     z-index: 9999;
     will-change: transform, opacity;
-    box-shadow: 0 0 8px currentColor, 0 0 12px currentColor, 0 0 16px currentColor;
+    box-shadow: 0 0 3px currentColor, 0 0 5px currentColor;
     filter: blur(0.5px);
+    opacity: 0.6;
 }
 
 .trail-dot::before {
@@ -97,7 +98,7 @@ h1, h2, h3, h4, h5, h6 {
     height: 150%;
     border-radius: 50%;
     background: inherit;
-    opacity: 0.4;
+    opacity: 0.2;
     filter: blur(2px);
 }
 
