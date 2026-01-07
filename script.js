@@ -283,3 +283,60 @@ window.addEventListener('scroll', () => {
     });
 });
 
+// Typing effect for hero subtitle
+const initTypingEffect = () => {
+    const typedTextElement = document.getElementById('typed-text');
+    if (!typedTextElement) return;
+
+    const keywords = [
+        'Data Scientist',
+        'AI Engineer',
+        'Strategist',
+        'Researcher',
+        'Creator'
+    ];
+
+    let keywordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typingSpeed = 100;
+
+    const type = () => {
+        const currentKeyword = keywords[keywordIndex];
+
+        if (isDeleting) {
+            // Deleting characters
+            typedTextElement.textContent = currentKeyword.substring(0, charIndex - 1);
+            charIndex--;
+            typingSpeed = 50; // Faster when deleting
+        } else {
+            // Typing characters
+            typedTextElement.textContent = currentKeyword.substring(0, charIndex + 1);
+            charIndex++;
+            typingSpeed = 100; // Normal typing speed
+        }
+
+        // When word is complete
+        if (!isDeleting && charIndex === currentKeyword.length) {
+            typingSpeed = 2000; // Pause at end of word
+            isDeleting = true;
+        }
+        // When word is fully deleted
+        else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            keywordIndex = (keywordIndex + 1) % keywords.length; // Move to next word
+            typingSpeed = 500; // Brief pause before typing next word
+        }
+
+        setTimeout(type, typingSpeed);
+    };
+
+    // Start the typing effect
+    type();
+};
+
+// Initialize typing effect on page load
+window.addEventListener('load', () => {
+    initTypingEffect();
+});
+

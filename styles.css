@@ -351,6 +351,32 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 24px;
 }
 
+/* Typing cursor effect */
+.typing-cursor {
+    display: inline-block;
+    margin-left: 4px;
+    color: var(--primary-accent);
+    font-weight: 400;
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    0%, 50% {
+        opacity: 1;
+    }
+    51%, 100% {
+        opacity: 0;
+    }
+}
+
+#typed-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+}
+
 .decorative-line {
     width: 80px;
     height: 4px;
