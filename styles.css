@@ -345,10 +345,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-subtitle {
-    font-size: 1.4rem;
+    font-size: 2rem;
     color: var(--text-secondary);
-    font-weight: 600;
+    font-weight: 700;
     margin-bottom: 24px;
+    font-family: 'Crimson Pro', Georgia, serif;
+    letter-spacing: 0.02em;
 }
 
 /* Typing cursor effect */
@@ -356,7 +358,8 @@ h1, h2, h3, h4, h5, h6 {
     display: inline-block;
     margin-left: 4px;
     color: var(--primary-accent);
-    font-weight: 400;
+    font-weight: 700;
+    font-size: 2.1rem;
     animation: blink 1s step-end infinite;
 }
 
@@ -370,11 +373,33 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #typed-text {
+    display: inline-block;
     background: var(--gradient-primary);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    font-weight: 700;
+    font-weight: 800;
+    font-size: 2.1rem;
+    background-size: 200% auto;
+    animation: gradient-shift 3s ease infinite;
+    min-width: 2px;
+    /* Fallback for browsers that don't support background-clip */
+    color: var(--primary-accent);
+}
+
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+    #typed-text {
+        color: transparent;
+    }
+}
+
+@keyframes gradient-shift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
 }
 
 .decorative-line {
@@ -1259,7 +1284,15 @@ footer {
     }
 
     .hero-subtitle {
-        font-size: 1.2rem;
+        font-size: 1.5rem;
+    }
+
+    #typed-text {
+        font-size: 1.6rem;
+    }
+
+    .typing-cursor {
+        font-size: 1.6rem;
     }
 
     .hero-description {
@@ -1321,7 +1354,15 @@ footer {
     }
 
     .hero-subtitle {
-        font-size: 1.1rem;
+        font-size: 1.3rem;
+    }
+
+    #typed-text {
+        font-size: 1.4rem;
+    }
+
+    .typing-cursor {
+        font-size: 1.4rem;
     }
 
     .container {
