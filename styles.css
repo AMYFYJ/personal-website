@@ -602,29 +602,29 @@ section#skills .section-header {
     padding: 20px 0;
 }
 
-/* Bulletin Boards Container - Horizontal Layout */
+/* Bulletin Boards Container - Grid Layout */
 .bulletin-boards-container {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 30px;
-    justify-content: center;
-    align-items: flex-start;
-    flex-wrap: wrap;
     padding: 20px 0;
+}
+
+/* First bulletin board spans full width */
+.bulletin-board:first-child {
+    grid-column: 1 / -1;
 }
 
 /* Individual Bulletin Board */
 .bulletin-board {
     position: relative;
-    background: linear-gradient(135deg, #f0e6f6 0%, #e8f4f8 100%);
-    border: 8px solid #8b7a9f;
-    border-radius: 8px;
-    padding: 40px 25px 30px;
+    background: linear-gradient(135deg, rgba(255, 245, 247, 0.6) 0%, rgba(250, 245, 255, 0.6) 100%);
+    border: 2px solid rgba(255, 107, 157, 0.15);
+    border-radius: 16px;
+    padding: 40px 30px 35px;
     box-shadow:
-        0 10px 30px rgba(139, 92, 246, 0.15),
-        inset 0 0 50px rgba(139, 92, 246, 0.05);
-    flex: 1;
-    min-width: 280px;
-    max-width: 360px;
+        0 8px 24px rgba(139, 92, 246, 0.08),
+        inset 0 0 60px rgba(255, 255, 255, 0.5);
     transition: all 0.4s ease;
 }
 
@@ -658,8 +658,9 @@ section#skills .section-header {
 .bulletin-board:hover {
     transform: translateY(-5px);
     box-shadow:
-        0 15px 40px rgba(139, 92, 246, 0.2),
-        inset 0 0 50px rgba(139, 92, 246, 0.08);
+        0 12px 32px rgba(139, 92, 246, 0.12),
+        inset 0 0 60px rgba(255, 255, 255, 0.6);
+    border-color: rgba(139, 92, 246, 0.25);
 }
 
 .board-title {
@@ -825,55 +826,41 @@ section#experience::after {
     z-index: 1;
 }
 
-/* Colorful sticky notes */
-.skill-tag:nth-child(6n+1) {
-    background: linear-gradient(135deg, #fef9c3 0%, #fde68a 100%);
+/* Colorful sticky notes - Matching website color palette */
+.skill-tag:nth-child(4n+1) {
+    background: linear-gradient(135deg, #FFE8F0 0%, #FFC9DC 100%);
     transform: rotate(-1deg);
 }
 
-.skill-tag:nth-child(6n+2) {
-    background: linear-gradient(135deg, #fecaca 0%, #fca5a5 100%);
+.skill-tag:nth-child(4n+1)::after {
+    background: radial-gradient(circle at 30% 30%, #FF6B9D, #E63980);
+}
+
+.skill-tag:nth-child(4n+2) {
+    background: linear-gradient(135deg, #E9DEFF 0%, #D4C5F9 100%);
     transform: rotate(1deg);
 }
 
-.skill-tag:nth-child(6n+2)::after {
-    background: radial-gradient(circle at 30% 30%, #8b5cf6, #6d28d9);
+.skill-tag:nth-child(4n+2)::after {
+    background: radial-gradient(circle at 30% 30%, #8B5CF6, #7C3AED);
 }
 
-.skill-tag:nth-child(6n+3) {
-    background: linear-gradient(135deg, #bfdbfe 0%, #93c5fd 100%);
-    transform: rotate(-2deg);
-}
-
-.skill-tag:nth-child(6n+3)::after {
-    background: radial-gradient(circle at 30% 30%, #06d6a0, #05a67c);
-}
-
-.skill-tag:nth-child(6n+4) {
-    background: linear-gradient(135deg, #d9f99d 0%, #bef264 100%);
-    transform: rotate(1.5deg);
-}
-
-.skill-tag:nth-child(6n+4)::after {
-    background: radial-gradient(circle at 30% 30%, #f59e0b, #d97706);
-}
-
-.skill-tag:nth-child(6n+5) {
-    background: linear-gradient(135deg, #e9d5ff 0%, #d8b4fe 100%);
+.skill-tag:nth-child(4n+3) {
+    background: linear-gradient(135deg, #CCFBF1 0%, #99F6E4 100%);
     transform: rotate(-1.5deg);
 }
 
-.skill-tag:nth-child(6n+5)::after {
-    background: radial-gradient(circle at 30% 30%, #ef4444, #dc2626);
+.skill-tag:nth-child(4n+3)::after {
+    background: radial-gradient(circle at 30% 30%, #06D6A0, #05B887);
 }
 
-.skill-tag:nth-child(6n+6) {
-    background: linear-gradient(135deg, #a7f3d0 0%, #6ee7b7 100%);
-    transform: rotate(2deg);
+.skill-tag:nth-child(4n+4) {
+    background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+    transform: rotate(1.5deg);
 }
 
-.skill-tag:nth-child(6n+6)::after {
-    background: radial-gradient(circle at 30% 30%, #3b82f6, #2563eb);
+.skill-tag:nth-child(4n+4)::after {
+    background: radial-gradient(circle at 30% 30%, #F59E0B, #D97706);
 }
 
 /* Animation delays */
@@ -1336,16 +1323,13 @@ footer {
     }
 
     .bulletin-boards-container {
-        flex-direction: column;
-        align-items: center;
+        grid-template-columns: 1fr;
         gap: 25px;
         padding: 20px;
     }
 
-    .bulletin-board {
-        max-width: 100%;
-        min-width: auto;
-        width: 100%;
+    .bulletin-board:first-child {
+        grid-column: 1;
     }
 
     section#projects {
