@@ -61,7 +61,16 @@ body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.6;
     color: var(--text-primary);
-    background: var(--bg-primary);
+    background: linear-gradient(180deg,
+        #fef3f8 0%,
+        #f0f9ff 15%,
+        #faf5ff 30%,
+        #fff5f7 45%,
+        #fafafa 60%,
+        #f0f4ff 75%,
+        #fef3f8 90%,
+        #faf5ff 100%);
+    background-attachment: fixed;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
@@ -225,7 +234,7 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
     justify-content: center;
     padding: 120px 40px 80px;
-    background: linear-gradient(135deg, #fef3f8 0%, #f0f9ff 40%, #faf5ff 100%);
+    background: transparent;
     overflow: hidden;
 }
 
@@ -558,13 +567,8 @@ section#about {
 
 section#education {
     position: relative;
-    padding: 100px 0 80px;
-    margin-left: -100vw;
-    margin-right: -100vw;
-    padding-left: calc(50vw - 550px + 40px);
-    padding-right: calc(50vw - 550px + 40px);
-    background: linear-gradient(135deg, #fff5f7 0%, #f0f9ff 100%);
-    clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%);
+    padding: 80px 0;
+    background: transparent;
 }
 
 section#experience {
@@ -574,14 +578,14 @@ section#experience {
 section#projects {
     position: relative;
     padding: 80px 0;
-    background: linear-gradient(135deg, #fef3f8 0%, #faf5ff 100%);
+    background: transparent;
     overflow: visible;
 }
 
 section#skills {
     position: relative;
     padding: 80px 0;
-    background: var(--bg-primary);
+    background: transparent;
     overflow: visible;
 }
 
@@ -1319,13 +1323,8 @@ footer {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    /* Remove diagonal clip-path on mobile */
     section#education {
-        clip-path: none;
-        padding-left: 40px;
-        padding-right: 40px;
-        margin-left: -40px;
-        margin-right: -40px;
+        padding: 80px 0;
     }
 
     section#skills {
