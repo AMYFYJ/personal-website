@@ -1,6 +1,6 @@
 # Amy Fang - Personal Website
 
-A simple, minimalistic personal website showcasing education, experience, and projects.
+A simple, minimalistic personal website showcasing my education, experience, and projects.
 
 ## Hosting on GitHub Pages
 
@@ -12,21 +12,3 @@ To enable GitHub Pages for this repository:
 4. Select the root folder `/` as the source
 5. Click "Save"
 
-Your site will be published at: `https://amyfyj.github.io/personal-website/`
-
-## Local Development
-
-To view the website locally, simply open `index.html` in your web browser.
-
-## Structure
-
-- `index.html` - Main HTML file with all content sections
-- `styles.css` - Minimalistic CSS styling
-- `README.md` - This file
-
-## Customization
-
-Feel free to update:
-- Content in `index.html`
-- Colors and styling in `styles.css` (see CSS variables in `:root`)
-- Add contact links or social media as needed
