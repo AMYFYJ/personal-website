@@ -1488,3 +1488,246 @@ a:focus:not(:focus-visible),
 button:focus:not(:focus-visible) {
     outline: none;
 }
+
+/* Easter Egg Popup Styles */
+.easter-egg-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(26, 22, 37, 0.7);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.easter-egg-popup.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.easter-egg-card {
+    position: relative;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 250, 255, 0.95) 100%);
+    border: 3px solid transparent;
+    border-radius: 24px;
+    padding: 50px 45px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow:
+        0 20px 60px rgba(139, 92, 246, 0.3),
+        0 10px 30px rgba(255, 107, 157, 0.2),
+        inset 0 0 100px rgba(255, 255, 255, 0.5);
+    transform: scale(0.7) translateY(-50px);
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    overflow: visible;
+    animation: float-gentle 6s ease-in-out infinite;
+}
+
+.easter-egg-popup.show .easter-egg-card {
+    transform: scale(1) translateY(0);
+}
+
+@keyframes float-gentle {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+/* Gradient border effect */
+.easter-egg-card::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    background: var(--gradient-vibrant);
+    border-radius: 24px;
+    z-index: -1;
+    animation: gradient-rotate 3s linear infinite;
+    background-size: 200% 200%;
+}
+
+@keyframes gradient-rotate {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Decorative ornaments */
+.easter-egg-ornament {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    opacity: 0.15;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.easter-egg-ornament.top {
+    top: -20px;
+    right: -20px;
+    background: var(--gradient-primary);
+    animation: morph 8s infinite ease-in-out;
+}
+
+.easter-egg-ornament.bottom {
+    bottom: -15px;
+    left: -15px;
+    background: var(--gradient-secondary);
+    animation: morph 10s infinite ease-in-out reverse;
+}
+
+/* Close button */
+.easter-egg-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, rgba(255, 107, 157, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+    border: 2px solid var(--primary-accent);
+    border-radius: 50%;
+    color: var(--primary-accent);
+    font-size: 24px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    line-height: 1;
+}
+
+.easter-egg-close:hover {
+    background: var(--gradient-primary);
+    color: white;
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 4px 15px rgba(255, 107, 157, 0.4);
+}
+
+/* Star icon */
+.easter-egg-star-icon {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 25px;
+    background: var(--gradient-vibrant);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: pulse-star 2s ease-in-out infinite;
+    background-size: 200% auto;
+}
+
+@keyframes pulse-star {
+    0%, 100% {
+        transform: scale(1);
+        background-position: 0% 50%;
+    }
+    50% {
+        transform: scale(1.1);
+        background-position: 100% 50%;
+    }
+}
+
+/* Message text */
+.easter-egg-message {
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 1.3rem;
+    color: var(--text-primary);
+    line-height: 1.8;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    animation: fade-in-up 0.6s ease-out 0.2s backwards;
+}
+
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Counter */
+.easter-egg-counter {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    animation: fade-in-up 0.6s ease-out 0.4s backwards;
+}
+
+/* Add sparkle effect to star logo */
+#easterEggStar {
+    position: relative;
+    cursor: pointer;
+}
+
+#easterEggStar::after {
+    content: '✦';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+#easterEggStar:hover::after {
+    opacity: 0.3;
+    transform: translate(-50%, -50%) scale(2) rotate(180deg);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .easter-egg-card {
+        padding: 40px 30px;
+    }
+
+    .easter-egg-message {
+        font-size: 1.1rem;
+    }
+
+    .easter-egg-star-icon {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .easter-egg-card {
+        padding: 35px 25px;
+    }
+
+    .easter-egg-message {
+        font-size: 1rem;
+    }
+
+    .easter-egg-star-icon {
+        font-size: 2rem;
+    }
+}

@@ -340,3 +340,74 @@ window.addEventListener('load', () => {
     initTypingEffect();
 });
 
+// Easter Egg - Hidden Messages
+const initEasterEgg = () => {
+    const easterEggStar = document.getElementById('easterEggStar');
+    const easterEggPopup = document.getElementById('easterEggPopup');
+    const easterEggClose = document.querySelector('.easter-egg-close');
+    const easterEggMessage = document.getElementById('easterEggMessage');
+    const easterEggCounter = document.getElementById('easterEggCounter');
+
+    if (!easterEggStar || !easterEggPopup) return;
+
+    // Bank of secret messages
+    const messages = [
+        "I studied composition for my music major, with a huge interest in classical music composition.",
+        "I like creating stuff, whether it's music, writings, knittings, etc.",
+        "Some of my best ideas come while walking or sitting in cafés people-watching.",
+        "I'm obsessed with how people think and behave, which is why cognitive science naturally found its way into my work with neuroscience and AI.",
+        "I like elegant patterns, whether it's in a poem, a model, a cognition, or a musical form."
+    ];
+
+    let currentMessageIndex = 0;
+    let clickCount = 0;
+
+    // Show popup with current message
+    const showEasterEgg = () => {
+        clickCount++;
+        const message = messages[currentMessageIndex];
+
+        easterEggMessage.textContent = message;
+        easterEggCounter.textContent = `Secret ${currentMessageIndex + 1} of ${messages.length}`;
+
+        easterEggPopup.classList.add('show');
+        document.body.style.overflow = 'hidden';
+
+        // Move to next message for next click
+        currentMessageIndex = (currentMessageIndex + 1) % messages.length;
+    };
+
+    // Hide popup
+    const hideEasterEgg = () => {
+        easterEggPopup.classList.remove('show');
+        document.body.style.overflow = '';
+    };
+
+    // Event listeners
+    easterEggStar.addEventListener('click', (e) => {
+        e.preventDefault();
+        showEasterEgg();
+    });
+
+    easterEggClose.addEventListener('click', hideEasterEgg);
+
+    // Close on background click
+    easterEggPopup.addEventListener('click', (e) => {
+        if (e.target === easterEggPopup) {
+            hideEasterEgg();
+        }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && easterEggPopup.classList.contains('show')) {
+            hideEasterEgg();
+        }
+    });
+};
+
+// Initialize easter egg on page load
+window.addEventListener('load', () => {
+    initEasterEgg();
+});
+
