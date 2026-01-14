@@ -340,3 +340,65 @@ window.addEventListener('load', () => {
     initTypingEffect();
 });
 
+// Hidden Messages Feature for Star Sign
+const initHiddenMessages = () => {
+    const starSign = document.getElementById('starSign');
+    const messageContainer = document.getElementById('hiddenMessage');
+
+    if (!starSign || !messageContainer) return;
+
+    const messages = [
+        "I studied composition for my music major, with a huge interest in classical music composition.",
+        "I like creating stuff, whether it's music, writings, knittings, etc.",
+        "Some of my best ideas come while walking or sitting in cafés people-watching.",
+        "I'm obsessed with how people think and behave, which is why cognitive science naturally found its way into my work with neuroscience and AI.",
+        "I like elegant patterns, whether it's in a poem, a model, a cognition, or a musical form."
+    ];
+
+    let currentMessageIndex = 0;
+    let isMessageShowing = false;
+    let hideTimeout = null;
+
+    const showMessage = () => {
+        // Prevent showing another message if one is already displayed
+        if (isMessageShowing) return;
+
+        isMessageShowing = true;
+
+        // Set the message text
+        messageContainer.textContent = messages[currentMessageIndex];
+
+        // Show the message with fade-in effect
+        messageContainer.classList.add('visible');
+
+        // Hide the message after 10 seconds
+        hideTimeout = setTimeout(() => {
+            messageContainer.classList.remove('visible');
+
+            // Reset flag after fade-out completes
+            setTimeout(() => {
+                isMessageShowing = false;
+                messageContainer.textContent = '';
+            }, 600); // Match the CSS transition duration
+
+            // Move to next message for the next click
+            currentMessageIndex = (currentMessageIndex + 1) % messages.length;
+        }, 10000); // 10 seconds
+    };
+
+    // Add click event listener to star sign
+    starSign.addEventListener('click', (e) => {
+        e.preventDefault();
+        showMessage();
+    });
+
+    // Add visual feedback on hover
+    starSign.style.cursor = 'pointer';
+    starSign.setAttribute('title', 'Click for a hidden message');
+};
+
+// Initialize hidden messages on page load
+window.addEventListener('load', () => {
+    initHiddenMessages();
+});
+
