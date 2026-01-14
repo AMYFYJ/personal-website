@@ -181,6 +181,13 @@ h1, h2, h3, h4, h5, h6 {
     visibility: visible;
 }
 
+/* Hide nav menu when message is showing */
+.nav-menu.hide-for-message {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
 @keyframes gradient-flow {
     0%, 100% {
         background-position: 0% 50%;

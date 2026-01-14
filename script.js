@@ -344,8 +344,9 @@ window.addEventListener('load', () => {
 const initHiddenMessages = () => {
     const starSign = document.getElementById('starSign');
     const messageContainer = document.getElementById('hiddenMessage');
+    const navMenu = document.getElementById('navMenu');
 
-    if (!starSign || !messageContainer) return;
+    if (!starSign || !messageContainer || !navMenu) return;
 
     const messages = [
         "I studied composition for my music major, with a huge interest in classical music composition.",
@@ -371,9 +372,15 @@ const initHiddenMessages = () => {
         // Show the message with fade-in effect
         messageContainer.classList.add('visible');
 
+        // Hide the navigation menu
+        navMenu.classList.add('hide-for-message');
+
         // Hide the message after 10 seconds
         hideTimeout = setTimeout(() => {
             messageContainer.classList.remove('visible');
+
+            // Show the navigation menu again
+            navMenu.classList.remove('hide-for-message');
 
             // Reset flag after fade-out completes
             setTimeout(() => {
