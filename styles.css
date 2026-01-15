@@ -160,12 +160,12 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1rem;
     font-weight: 600;
     font-style: italic;
-    background: linear-gradient(90deg, #FFD700 0%, #FFA500 25%, #FFED4E 50%, #FFA500 75%, #FFD700 100%);
+    background: linear-gradient(90deg, #FFFFFF 0%, #E0E0E0 25%, #FFFFFF 50%, #E0E0E0 75%, #FFFFFF 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     background-size: 200% auto;
-    animation: shine-flow 2s ease infinite;
+    animation: shine-flow 5s ease infinite;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.6s ease, visibility 0.6s ease;
@@ -177,7 +177,7 @@ h1, h2, h3, h4, h5, h6 {
     text-overflow: ellipsis;
     pointer-events: none;
     z-index: 10;
-    text-shadow: 0 0 20px rgba(255, 215, 0, 0.5), 0 0 30px rgba(255, 215, 0, 0.3);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
 }
 
 .hidden-message.visible {
