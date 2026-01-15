@@ -375,7 +375,7 @@ const initHiddenMessages = () => {
         // Hide the navigation menu
         navMenu.classList.add('hide-for-message');
 
-        // Hide the message after 10 seconds
+        // Hide the message after 5 seconds
         hideTimeout = setTimeout(() => {
             messageContainer.classList.remove('visible');
 
@@ -390,7 +390,7 @@ const initHiddenMessages = () => {
 
             // Move to next message for the next click
             currentMessageIndex = (currentMessageIndex + 1) % messages.length;
-        }, 10000); // 10 seconds
+        }, 5000); // 5 seconds
     };
 
     // Add click event listener to star sign
