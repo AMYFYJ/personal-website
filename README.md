@@ -2,7 +2,7 @@
 
 A simple, minimalistic personal website showcasing my education, experience, and projects.
 
-**Live site:** https://amyfyj.github.io
+**Live site:** https://amyfyj.github.io/personal-website/
 
 ## Hosting on GitHub Pages
 
