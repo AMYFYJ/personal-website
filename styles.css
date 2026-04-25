@@ -1356,20 +1356,21 @@ footer {
     .nav-menu {
         position: fixed;
         top: 70px;
-        left: -100%;
+        left: 0;
         width: 100%;
         height: calc(100vh - 70px);
         background: var(--bg-primary);
         flex-direction: column;
         padding: 50px 40px;
         gap: 25px;
-        transition: left 0.4s ease;
+        transition: transform 0.4s ease;
         overflow-y: auto;
         border-top: 2px solid var(--border-color);
+        transform: translateX(-100%);
     }
 
     .nav-menu.active {
-        left: 0;
+        transform: translateX(0);
     }
 
     .nav-link {
