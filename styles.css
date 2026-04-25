@@ -54,6 +54,7 @@
 html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
+    overflow-x: hidden;
 }
 
 body {
@@ -69,6 +70,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    position: relative;
 }
 
 /* Professional Typography - Headings */
@@ -1316,10 +1318,8 @@ footer {
 /* Responsive Design */
 @media (max-width: 768px) {
     section#about {
-        margin-left: -30px;
-        margin-right: -30px;
-        padding-left: 30px;
-        padding-right: 30px;
+        margin-left: 0;
+        margin-right: 0;
     }
 
     section#education {
@@ -1486,13 +1486,6 @@ footer {
     .typing-cursor {
         font-size: 1.6rem;
         margin-left: 4px;
-    }
-
-    section#about {
-        margin-left: -20px;
-        margin-right: -20px;
-        padding-left: 20px;
-        padding-right: 20px;
     }
 
     .container {
