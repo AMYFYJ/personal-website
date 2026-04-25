@@ -2,6 +2,8 @@
 
 A simple, minimalistic personal website showcasing my education, experience, and projects.
 
+**Live site:** https://amyfyj.github.io
+
 ## Hosting on GitHub Pages
 
 To enable GitHub Pages for this repository:
