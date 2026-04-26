@@ -159,63 +159,7 @@ window.addEventListener('load', () => {
     addRippleEffects();
 });
 
-// Hamburger menu toggle
-const hamburger = document.getElementById('hamburger');
-const navMenu = document.getElementById('navMenu');
 
-if (hamburger && navMenu) {
-    hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        navMenu.classList.toggle('active');
-        document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
-    });
-
-    // Close mobile menu when clicking a link
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-    });
-
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!navMenu.contains(e.target) && !hamburger.contains(e.target) && navMenu.classList.contains('active')) {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-    });
-}
-
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            const navHeight = document.querySelector('.navbar').offsetHeight;
-            const targetPosition = target.offsetTop - navHeight - 20;
-
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
-        }
-    });
-});
-
-// Navbar scroll effect
-const navbar = document.querySelector('.navbar');
-
-window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 50) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
-});
 
 // Scroll to top button
 const scrollTopBtn = document.getElementById('scrollTop');
@@ -258,30 +202,6 @@ window.addEventListener('load', () => {
     revealOnScroll();
 });
 
-// Active navigation link highlighting
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-link');
-
-window.addEventListener('scroll', () => {
-    let current = '';
-    const scrollPosition = window.pageYOffset;
-
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop - 100;
-        const sectionHeight = section.offsetHeight;
-
-        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-            current = section.getAttribute('id');
-        }
-    });
-
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
-        }
-    });
-});
 
 // Typing effect for hero subtitle
 const initTypingEffect = () => {
@@ -340,72 +260,4 @@ window.addEventListener('load', () => {
     initTypingEffect();
 });
 
-// Hidden Messages Feature for Star Sign
-const initHiddenMessages = () => {
-    const starSign = document.getElementById('starSign');
-    const messageContainer = document.getElementById('hiddenMessage');
-    const navMenu = document.getElementById('navMenu');
-
-    if (!starSign || !messageContainer || !navMenu) return;
-
-    const messages = [
-        "I studied composition for my music major, with a huge interest in classical music composition.",
-        "I like creating stuff, whether it's music, writings, knittings, etc.",
-        "Some of my best ideas come while walking or sitting in cafés people-watching.",
-        "I'm obsessed with how people think and behave, which is why cognitive science naturally found its way into my work with neuroscience and AI.",
-        "I like elegant patterns, whether it's in a poem, a model, a cognition, or a musical form."
-    ];
-
-    let currentMessageIndex = 0;
-    let isMessageShowing = false;
-    let hideTimeout = null;
-
-    const showMessage = () => {
-        // Prevent showing another message if one is already displayed
-        if (isMessageShowing) return;
-
-        isMessageShowing = true;
-
-        // Set the message text
-        messageContainer.textContent = messages[currentMessageIndex];
-
-        // Show the message with fade-in effect
-        messageContainer.classList.add('visible');
-
-        // Hide the navigation menu
-        navMenu.classList.add('hide-for-message');
-
-        // Hide the message after 5 seconds
-        hideTimeout = setTimeout(() => {
-            messageContainer.classList.remove('visible');
-
-            // Show the navigation menu again
-            navMenu.classList.remove('hide-for-message');
-
-            // Reset flag after fade-out completes
-            setTimeout(() => {
-                isMessageShowing = false;
-                messageContainer.textContent = '';
-            }, 600); // Match the CSS transition duration
-
-            // Move to next message for the next click
-            currentMessageIndex = (currentMessageIndex + 1) % messages.length;
-        }, 5000); // 5 seconds
-    };
-
-    // Add click event listener to star sign
-    starSign.addEventListener('click', (e) => {
-        e.preventDefault();
-        showMessage();
-    });
-
-    // Add visual feedback on hover
-    starSign.style.cursor = 'pointer';
-    starSign.setAttribute('title', 'Click for a hidden message');
-};
-
-// Initialize hidden messages on page load
-window.addEventListener('load', () => {
-    initHiddenMessages();
-});
 
