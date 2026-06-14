@@ -2,129 +2,6 @@
 // CLASSICAL MUSIC INSPIRED WEBSITE - SIMPLE JS
 // ============================================
 
-// Sparks Cursor Trail Effect - Gradient Colors
-const createMouseTrail = () => {
-    const sparks = [];
-    const maxSparks = 50;
-
-    // Subtle gradient colors matching the website theme
-    const colors = [
-        '#FF6B9D',  // Coral Pink (primary-accent)
-        '#8B5CF6',  // Rich Purple (tertiary-accent)
-        '#F59E0B',  // Warm Amber (quaternary-accent)
-        '#FFB3D1',  // Light Pink (primary-accent-light)
-        '#A78BFA'   // Light Purple (tertiary-accent-light)
-    ];
-
-    let lastX = 0;
-    let lastY = 0;
-    let isMoving = false;
-
-    // Create spark particle
-    const createSpark = (x, y) => {
-        if (sparks.length >= maxSparks) {
-            const oldSpark = sparks.shift();
-            oldSpark.element.remove();
-        }
-
-        const spark = document.createElement('div');
-        spark.className = 'trail-dot';
-
-        // Random color from gradient palette
-        const color = colors[Math.floor(Math.random() * colors.length)];
-        spark.style.backgroundColor = color;
-        spark.style.color = color; // For currentColor in box-shadow
-
-        // Random size variation
-        const size = 4 + Math.random() * 4;
-        spark.style.width = size + 'px';
-        spark.style.height = size + 'px';
-
-        // Starting position
-        spark.style.left = x + 'px';
-        spark.style.top = y + 'px';
-
-        document.body.appendChild(spark);
-
-        // Random velocity for spark-like scatter effect
-        const angle = Math.random() * Math.PI * 2;
-        const velocity = 0.5 + Math.random() * 2;
-        const vx = Math.cos(angle) * velocity;
-        const vy = Math.sin(angle) * velocity;
-
-        // Add slight upward bias (sparks tend to rise)
-        const sparkData = {
-            element: spark,
-            x: x,
-            y: y,
-            vx: vx,
-            vy: vy - 0.3,
-            life: 1.0,
-            decay: 0.015 + Math.random() * 0.015,
-            rotation: Math.random() * 360
-        };
-
-        sparks.push(sparkData);
-    };
-
-    // Track mouse movement
-    let createSparkTimer = 0;
-    document.addEventListener('mousemove', (e) => {
-        const dx = e.clientX - lastX;
-        const dy = e.clientY - lastY;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-
-        lastX = e.clientX;
-        lastY = e.clientY;
-        isMoving = true;
-
-        // Create more sparks when moving faster
-        if (distance > 2) {
-            createSparkTimer++;
-            if (createSparkTimer % 2 === 0) { // Create spark every other frame when moving
-                createSpark(e.clientX, e.clientY);
-            }
-        }
-    });
-
-    // Animate sparks
-    const animateSparks = () => {
-        sparks.forEach((spark, index) => {
-            // Update position with velocity
-            spark.x += spark.vx;
-            spark.y += spark.vy;
-
-            // Apply slight gravity and air resistance
-            spark.vy += 0.05; // gravity
-            spark.vx *= 0.98; // air resistance
-            spark.vy *= 0.98;
-
-            // Decrease life
-            spark.life -= spark.decay;
-
-            // Update visual properties
-            if (spark.life > 0) {
-                spark.element.style.left = spark.x + 'px';
-                spark.element.style.top = spark.y + 'px';
-                spark.element.style.opacity = Math.max(0, spark.life);
-
-                // Rotate and scale down as it fades
-                const scale = 0.3 + spark.life * 0.7;
-                spark.rotation += 2;
-                spark.element.style.transform = `translate(-50%, -50%) scale(${scale}) rotate(${spark.rotation}deg)`;
-            } else {
-                // Remove dead sparks
-                spark.element.remove();
-                sparks.splice(index, 1);
-            }
-        });
-
-        requestAnimationFrame(animateSparks);
-    };
-
-    animateSparks();
-};
-
 // Ripple Effect for Buttons
 const createRipple = (event) => {
     const button = event.currentTarget;
@@ -153,9 +30,8 @@ const addRippleEffects = () => {
     });
 };
 
-// Initialize mouse trail on page load
+// Initialize button effects on page load
 window.addEventListener('load', () => {
-    createMouseTrail();
     addRippleEffects();
 });
 
