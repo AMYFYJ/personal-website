@@ -11,11 +11,55 @@
 </head>
 <body>
 
+    <!-- Side Navigation -->
+    <aside class="sidebar" id="sidebar" aria-label="Primary navigation">
+        <a href="#hero" class="brand" data-nav>
+            <span class="brand-mark">AF</span>
+            <span class="brand-text">
+                <span class="brand-name">Amy Fang</span>
+                <span class="brand-role">Data Scientist</span>
+            </span>
+        </a>
+        <nav class="sidebar-nav">
+            <a href="#about" class="nav-link" data-nav><span class="nav-index">01</span><span>About</span></a>
+            <a href="#skills" class="nav-link" data-nav><span class="nav-index">02</span><span>Skills</span></a>
+            <a href="#education" class="nav-link" data-nav><span class="nav-index">03</span><span>Education</span></a>
+            <a href="#experience" class="nav-link" data-nav><span class="nav-index">04</span><span>Experience</span></a>
+            <a href="#projects" class="nav-link" data-nav><span class="nav-index">05</span><span>Projects</span></a>
+            <a href="#contact" class="nav-link" data-nav><span class="nav-index">06</span><span>Contact</span></a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="https://www.linkedin.com/in/amy-fang-upenn/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.25 8.25h4.5V23h-4.5V8.25zM8.25 8.25h4.31v2.02h.06c.6-1.13 2.07-2.32 4.26-2.32 4.56 0 5.4 3 5.4 6.9V23h-4.5v-6.54c0-1.56-.03-3.57-2.18-3.57-2.18 0-2.51 1.7-2.51 3.46V23h-4.5V8.25z"/></svg>
+            </a>
+            <a href="https://github.com/AMYFYJ" target="_blank" rel="noopener" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.25.8-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.3-1.7-1.3-1.7-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.79 2.74 1.27 3.4.97.11-.76.41-1.27.74-1.56-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.27 5.69.42.36.8 1.08.8 2.18v3.23c0 .31.21.67.81.56A11.5 11.5 0 0 0 23.5 12C23.5 5.7 18.3.5 12 .5z"/></svg>
+            </a>
+            <a href="mailto:amy2016us@gmail.com" aria-label="Email">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 5h20a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm10 7.5L3.5 7v.6l8.5 5.4 8.5-5.4V7L12 12.5z"/></svg>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Mobile Top Bar -->
+    <header class="topbar">
+        <button class="nav-toggle" id="navToggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="sidebar">
+            <span></span><span></span><span></span>
+        </button>
+        <a href="#hero" class="topbar-brand" data-nav>Amy Fang</a>
+    </header>
+
+    <!-- Overlay for mobile menu -->
+    <div class="nav-overlay" id="navOverlay"></div>
+
+    <main class="main">
+
     <!-- Hero Banner -->
-    <section class="hero">
+    <section id="hero" class="hero">
         <div class="hero-ornament top-left"></div>
         <div class="hero-ornament bottom-right"></div>
         <div class="hero-content">
+            <p class="hero-eyebrow">Conducting Innovation</p>
             <h1 class="hero-title">Amy Fang</h1>
             <p class="hero-subtitle">I'm a <span id="typed-text"></span><span class="typing-cursor">|</span></p>
             <div class="decorative-line"></div>
@@ -361,6 +405,7 @@
             </div>
         </footer>
     </div>
+    </main>
 
     <!-- Scroll to Top Button -->
     <button id="scrollTop" class="scroll-top" aria-label="Scroll to top">

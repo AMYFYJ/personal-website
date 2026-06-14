@@ -1,8 +1,82 @@
 // ============================================
-// CLASSICAL MUSIC INSPIRED WEBSITE - SIMPLE JS
+// AMY FANG — PORTFOLIO INTERACTIONS
 // ============================================
 
-// Ripple Effect for Buttons
+// --------------------------------------------
+// Mobile navigation (hamburger + overlay)
+// --------------------------------------------
+const navToggle = document.getElementById('navToggle');
+const navOverlay = document.getElementById('navOverlay');
+const body = document.body;
+
+const openMenu = () => {
+    body.classList.add('menu-open');
+    if (navToggle) navToggle.setAttribute('aria-expanded', 'true');
+};
+
+const closeMenu = () => {
+    body.classList.remove('menu-open');
+    if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
+};
+
+if (navToggle) {
+    navToggle.addEventListener('click', () => {
+        body.classList.contains('menu-open') ? closeMenu() : openMenu();
+    });
+}
+
+if (navOverlay) {
+    navOverlay.addEventListener('click', closeMenu);
+}
+
+// Close the menu after tapping any nav/brand link
+document.querySelectorAll('[data-nav]').forEach(link => {
+    link.addEventListener('click', closeMenu);
+});
+
+// Close on Escape
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+});
+
+// --------------------------------------------
+// Scroll-spy: highlight the active section link
+// --------------------------------------------
+const navLinks = Array.from(document.querySelectorAll('.sidebar-nav .nav-link'));
+const linkById = {};
+navLinks.forEach(link => {
+    const id = link.getAttribute('href').slice(1);
+    linkById[id] = link;
+});
+
+const setActive = (id) => {
+    navLinks.forEach(link => link.classList.remove('active'));
+    if (linkById[id]) linkById[id].classList.add('active');
+};
+
+if ('IntersectionObserver' in window && navLinks.length) {
+    const spy = new IntersectionObserver((entries) => {
+        // Pick the most visible intersecting section
+        let best = null;
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                if (!best || entry.intersectionRatio > best.intersectionRatio) {
+                    best = entry;
+                }
+            }
+        });
+        if (best) setActive(best.target.id);
+    }, { rootMargin: '-44% 0px -50% 0px', threshold: [0, 0.25, 0.5, 1] });
+
+    navLinks.forEach(link => {
+        const el = document.getElementById(link.getAttribute('href').slice(1));
+        if (el) spy.observe(el);
+    });
+}
+
+// --------------------------------------------
+// Ripple effect for buttons
+// --------------------------------------------
 const createRipple = (event) => {
     const button = event.currentTarget;
     const ripple = document.createElement('span');
@@ -17,69 +91,49 @@ const createRipple = (event) => {
     ripple.classList.add('ripple');
 
     button.appendChild(ripple);
-
-    setTimeout(() => {
-        ripple.remove();
-    }, 600);
+    setTimeout(() => ripple.remove(), 600);
 };
 
-// Add ripple effect to all buttons
-const addRippleEffects = () => {
-    document.querySelectorAll('.btn').forEach(button => {
-        button.addEventListener('click', createRipple);
-    });
-};
-
-// Initialize button effects on page load
-window.addEventListener('load', () => {
-    addRippleEffects();
+document.querySelectorAll('.btn').forEach(button => {
+    button.addEventListener('click', createRipple);
 });
 
-
-
-// Scroll to top button
+// --------------------------------------------
+// Scroll-to-top button
+// --------------------------------------------
 const scrollTopBtn = document.getElementById('scrollTop');
 
 if (scrollTopBtn) {
     window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 300) {
-            scrollTopBtn.classList.add('visible');
-        } else {
-            scrollTopBtn.classList.remove('visible');
-        }
+        scrollTopBtn.classList.toggle('visible', window.pageYOffset > 320);
     });
 
     scrollTopBtn.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 }
 
+// --------------------------------------------
 // Reveal sections on scroll
+// --------------------------------------------
 const revealSections = document.querySelectorAll('.reveal-section');
 
 const revealOnScroll = () => {
+    const trigger = window.innerHeight * 0.85;
     revealSections.forEach(section => {
-        const sectionTop = section.getBoundingClientRect().top;
-        const windowHeight = window.innerHeight;
-
-        if (sectionTop < windowHeight * 0.8) {
+        if (section.getBoundingClientRect().top < trigger) {
             section.classList.add('revealed');
         }
     });
 };
 
 window.addEventListener('scroll', revealOnScroll);
+window.addEventListener('load', revealOnScroll);
+revealOnScroll();
 
-// Initial check after page load
-window.addEventListener('load', () => {
-    revealOnScroll();
-});
-
-
+// --------------------------------------------
 // Typing effect for hero subtitle
+// --------------------------------------------
 const initTypingEffect = () => {
     const typedTextElement = document.getElementById('typed-text');
     if (!typedTextElement) return;
@@ -95,45 +149,34 @@ const initTypingEffect = () => {
     let keywordIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
-    let typingSpeed = 100;
 
     const type = () => {
         const currentKeyword = keywords[keywordIndex];
+        let typingSpeed;
 
         if (isDeleting) {
-            // Deleting characters
             typedTextElement.textContent = currentKeyword.substring(0, charIndex - 1);
             charIndex--;
-            typingSpeed = 50; // Faster when deleting
+            typingSpeed = 50;
         } else {
-            // Typing characters
             typedTextElement.textContent = currentKeyword.substring(0, charIndex + 1);
             charIndex++;
-            typingSpeed = 100; // Normal typing speed
+            typingSpeed = 100;
         }
 
-        // When word is complete
         if (!isDeleting && charIndex === currentKeyword.length) {
-            typingSpeed = 2000; // Pause at end of word
+            typingSpeed = 2000;
             isDeleting = true;
-        }
-        // When word is fully deleted
-        else if (isDeleting && charIndex === 0) {
+        } else if (isDeleting && charIndex === 0) {
             isDeleting = false;
-            keywordIndex = (keywordIndex + 1) % keywords.length; // Move to next word
-            typingSpeed = 500; // Brief pause before typing next word
+            keywordIndex = (keywordIndex + 1) % keywords.length;
+            typingSpeed = 500;
         }
 
         setTimeout(type, typingSpeed);
     };
 
-    // Start the typing effect
     type();
 };
 
-// Initialize typing effect on page load
-window.addEventListener('load', () => {
-    initTypingEffect();
-});
-
-
+window.addEventListener('load', initTypingEffect);
